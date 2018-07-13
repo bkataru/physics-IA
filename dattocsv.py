@@ -11,6 +11,7 @@ with open('HIP_star.dat') as input_file:
                     fixedNewLine.append(i)
         newLines.append(fixedNewLine)
 
+print(len(newLines))
 with open('HIP_star.csv', 'w') as output_file:
     file_writer = csv.writer(output_file)
     file_writer.writerows(newLines)
