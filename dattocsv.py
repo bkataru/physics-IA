@@ -1,6 +1,6 @@
 import csv
 
-with open('HIP_star.dat') as input_file:
+with open('hip2.dat') as input_file:
     newLines = []
     for line in input_file:
         newLine = [x.strip() for x in line.split('  ')]
@@ -12,6 +12,6 @@ with open('HIP_star.dat') as input_file:
         newLines.append(fixedNewLine)
 
 print(len(newLines))
-with open('HIP_star.csv', 'w') as output_file:
+with open('hip2.csv', 'w') as output_file:
     file_writer = csv.writer(output_file)
     file_writer.writerows(newLines)
