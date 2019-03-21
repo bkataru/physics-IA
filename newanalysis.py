@@ -82,37 +82,42 @@ for stellar_type in types:
     data, e_data = raw_data[0], raw_data[1]
     print(stellar_type, len(data))
 
-# Plotting section below
+    option = 'line'
 
-# fig = plt.figure(1)
-#
-# mag = 3000
-# plt.axis([0, mag, 0, mag])
-#
-# center = mag / 2
-#
-# ax = fig.add_subplot(1, 1, 1)
-#
-# option = 2
-#
-# for radius_dict in data:
-#     if option == 1:
-#         inner_radius = radius_dict['inner']
-#         #outer_radius = radius_dict['outer']
-#         orbit_inner = plt.Circle((center, center), radius=inner_radius, color='red', fill=False)
-#         #orbit_outer = plt.Circle((center, center), radius=outer_radius, color='blue', fill=False)
-#         ax.add_patch(orbit_inner)
-#         #ax.add_patch(orbit_outer)
-#     elif option == 2:
-#         outer_radius = radius_dict['outer']
-#         orbit_outer = plt.Circle((center, center), radius=outer_radius, color='blue', fill=False)
-#         ax.add_patch(orbit_outer)
-#     elif option == 3:
-#         inner_radius = radius_dict['inner']
-#         outer_radius = radius_dict['outer']
-#         orbit_inner = plt.Circle((center, center), radius=inner_radius, color='red', fill=False)
-#         orbit_outer = plt.Circle((center, center), radius=outer_radius, color='blue', fill=False)
-#         ax.add_patch(orbit_inner)
-#         ax.add_patch(orbit_outer)
-#
-# plt.show()
+    if option == 'circle':
+        fig = plt.figure(1)
+
+        mag = 3000
+        plt.axis([0, mag, 0, mag])
+
+        center = mag / 2
+
+        ax = fig.add_subplot(1, 1, 1)
+
+        for radius_dict in data:
+            inner_radius = radius_dict['inner']
+            outer_radius = radius_dict['outer']
+            orbit_inner = plt.Circle((center, center), radius=inner_radius, color='red', fill=False)
+            orbit_outer = plt.Circle((center, center), radius=outer_radius, color='blue', fill=False)
+            ax.add_patch(orbit_inner)
+            ax.add_patch(orbit_outer)
+
+    elif option == 'line':
+        x_arr = []
+        y_arr = []
+
+        for radius_dict in data:
+            inner_radius = radius_dict['inner']
+            x_arr.append(inner_radius)
+            outer_radius = radius_dict['outer']
+            y_arr.append(outer_radius)
+
+
+        plt.scatter(x_arr, y_arr, s=0.1)
+        plt.xlabel('Inner radius (in AU)')
+        plt.ylabel('Outer radius (in AU)')
+
+
+    plt.show()
+
+
